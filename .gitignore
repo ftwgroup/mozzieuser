@@ -1,4 +1,6 @@
 *.py[co]
+.idea
+.DS_Store
 
 # Packages
 *.egg
