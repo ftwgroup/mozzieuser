@@ -1,6 +1,7 @@
 *.py[co]
 .idea
 .DS_Store
+dev.db
 
 # Packages
 *.egg
