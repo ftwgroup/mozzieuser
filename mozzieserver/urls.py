@@ -4,7 +4,7 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 from djangorestframework.views import ListOrCreateModelView, InstanceModelView
-from contacts.models import ContactsResource
+from contacts.resources import *
 
 urlpatterns = patterns('',
     # Examples:
@@ -18,5 +18,6 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('djangorestframework.urls', namespace='djangorestframework')),
     url(r'^people/$', ListOrCreateModelView.as_view(resource=ContactsResource)),
-    url(r'^(?P<pk>[d]+)/$', InstanceModelView.as_view(resource=ContactsResource)),
+    url(r'^(?P<pk>[\d]+)/$', InstanceModelView.as_view(resource=ContactsResource), name='person'),
+    url(r'^phone-numbers/$', ListOrCreateModelView.as_view(resource=PhoneNumberResource), name='phone_numbers'),
 )
