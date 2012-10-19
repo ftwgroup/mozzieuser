@@ -17,6 +17,7 @@ class Person(models.Model):
     nick_name = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='photos') #avatar
     emails = models.ForeignKey('EmailAddresses')
+    on_phone = models.BooleanField(default=True)
 
 class Group(models.Model):
     name = models.CharField(max_length=255)
