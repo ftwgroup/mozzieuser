@@ -4,7 +4,7 @@ from contacts.models import Person, PhoneNumber, EmailAddresses, Group, Event
 
 class ContactsResource(ModelResource):
     model = Person
-    include = ('numbers',)
+    include = ('numbers','app_id')
 
 #    def phone_numbers(self,instance):
 #        if instance.__class__ == PhoneNumber:
@@ -31,6 +31,13 @@ class EmailAddressResource(ModelResource):
 
 class GroupResource(ModelResource):
     model = Group
+
+    def validate_request(self, data, files=None):
+        #TODO (julian) change this to handle intelligently uploading masses of data
+        if 'persons' in data:
+            data['persons'] = [Person.objects.get(pk=1).id]
+
+        return super(GroupResource, self).validate_request(data, files)
 
 class EventResource(ModelResource):
     model = Event

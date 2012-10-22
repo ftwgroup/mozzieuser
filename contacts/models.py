@@ -26,6 +26,8 @@ class Person(models.Model):
     def __unicode__(self):
         return '%s, %s' % (self.last, self.first)
 
+    def app_id(self):
+        return self.id
     def numbers(self):
         numbers = self.phonenumber_set.all()
         def make_number_dict(arg):
